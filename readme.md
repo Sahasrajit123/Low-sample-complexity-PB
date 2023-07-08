@@ -2,7 +2,7 @@ We have four files in this folder contains scripts for the paper "Low Sample Com
 
 a) Toggle_permutations.py 
 
-This file generates all possible binary strings of length (20). Note that each of these strings denote various cases in the optimization problem formulation as described in Lemma 13 and 9. Then it performs two reductions in sequence.
+This file generates all possible binary strings of length (20). Note that each of these strings indices the optimization problem formulation as described in Lemma 13 and 9. Then it performs two reductions in sequence. '0' at an index denotes the 3-sized subset $Q$ corresponding to that index belongs in Case-1 and '1' denotes the same for Case-2.
 
 i) From every pairs of such strings which are toggles of each other, exactly one of them is chosen for the next step. (Follows from the result in Lemma 21). 
 
