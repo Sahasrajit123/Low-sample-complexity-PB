@@ -1,4 +1,5 @@
-import cvxpy as cp
+### Gives the set of all cases from 2^20 obtained after removing the case unique upto permutation of voter preferences.
+
 import numpy as np
 import math,random
 import time
@@ -62,36 +63,42 @@ def apply_permutation(permutation, subset):
 
 print ("Powerset",len(list(powerset(all_subsets))))
 
-all_vals = set()
-cur_iter = 0
-t1 = time.time()
-for sets_on in powerset(all_subsets):
-  cur_iter += 1
-  if (cur_iter % 1000) == 0:
-    t2 = time.time()
-    print(cur_iter, " time ", t2 - t1, end=" ", flush = True)
-    t1 = t2
-    if cur_iter % 50000 == 0:
-      print()
-  min_val = 1 << len(all_subsets)
-  min_perm = 0
-  for perm in all_perms:
-    val = 0
-    new_sets_on = [frozenset(apply_permutation(perm, subset)) for subset in sets_on]
-    for subset in new_sets_on:
-      val += (1 <<  subset_to_id(subset))
-    if val < min_val:
-      min_val = val
-      min_perm = perm
-  if (min_val in all_vals):
-    if verbose:
-      print("skipping ", sets_on, "since it gives value ", min_val,  " with permutation ", min_perm)
-  else:
-    if verbose:
-      print("adding ", sets_on, " with value", min_val )
-  all_vals.add(min_val)
+def unique_permutation():
 
+    all_vals = set()
+    cur_iter = 0
+    t1 = time.time()
+    for sets_on in powerset(all_subsets):
+      cur_iter += 1
+      if (cur_iter % 1000) == 0:
+        t2 = time.time()
+        ##print(cur_iter, " time ", t2 - t1, end=" ", flush = True)
+        t1 = t2
+        ##if cur_iter % 50000 == 0:
+          ##print()
+      min_val = 1 << len(all_subsets)
+      min_perm = 0
+      for perm in all_perms:
+        val = 0
+        new_sets_on = [frozenset(apply_permutation(perm, subset)) for subset in sets_on]
+        for subset in new_sets_on:
+          val += (1 <<  subset_to_id(subset))
+        if val < min_val:
+          min_val = val
+          min_perm = perm
+      if (min_val in all_vals):
+        if verbose:
+          print("skipping ", sets_on, "since it gives value ", min_val,  " with permutation ", min_perm)
+      else:
+        if verbose:
+          print("adding ", sets_on, " with value", min_val )
+      all_vals.add(min_val)
+
+    return all_vals
+
+"""
 print()
 if verbose:
   print(all_vals)
 print(len(all_vals))
+"""
