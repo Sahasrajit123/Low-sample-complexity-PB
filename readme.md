@@ -1,4 +1,4 @@
-We have four files in this folder contains scripts for the paper "Low Sample Complexity Participatory Budgeting"
+We have four files in this folder contains scripts for the paper "Low Sample Complexity Participatory Budgeting". Have to download 4 files together in a folder to run them.
 
 a) Toggle_permutations.py 
 
