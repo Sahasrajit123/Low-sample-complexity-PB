@@ -290,7 +290,7 @@ for index in range(len(non_perm_upto_toggle))[::-1]:
                     for V_prime in powerset(set(range(n))-set(mapping_3_subset_list[j])):
                         list_temp3.append(X[mapping_all_subset_dict[frozenset(set(Q_prime)|set(V_prime))]])
         
-        if (list_diff_R[j]=='1'): ## considers Case 2 as defined in every condition. 
+        if (list_diff_R[j]=='0'): ## considers Case 1 as defined in every condition. 
             model.addConstr(gp.quicksum(list_temp3) >=1) ##puts desired constraint on X(xy) + X(xyc) + X(xc)+ X(yc) on a incremental space of x,y,c 
             for Q_prime in findsubsets(set(mapping_3_subset_list[j]),1): ### identifying the disagreement point
                     for U_prime in powerset(set(range(n))-set(mapping_3_subset_list[j])):
@@ -305,7 +305,7 @@ for index in range(len(non_perm_upto_toggle))[::-1]:
                         
                         
             ##print("entered and finished part1",j)
-        elif (list_diff_R[j]=='0'):
+        elif (list_diff_R[j]=='1'):
             ##print ("entering here",list_diff_R[j])
             model.addConstr(gp.quicksum(list_temp3) <=1)
             for Q_prime in findsubsets(set(mapping_3_subset_list[j]),2):
